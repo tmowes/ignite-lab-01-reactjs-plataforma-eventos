@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
+body {
   @apply bg-[#09090A] text-zinc-100
+}
+
+*,
+button,
+textarea,
+select,
+input {
+  font-family: 'Roboto', sans-serif;
 }
