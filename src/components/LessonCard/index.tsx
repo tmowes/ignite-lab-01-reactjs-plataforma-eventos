@@ -1,5 +1,6 @@
 import { isPast } from 'date-fns'
 import { CheckCircle, Lock } from 'phosphor-react'
+import { Link } from 'react-router-dom'
 
 import { formatLessonDate } from '../../utils/convertDate'
 import { styles } from './styles'
@@ -12,17 +13,17 @@ export function LessonCard(props: LessonCardProps) {
   const availableDateFormatted = formatLessonDate(availableAt)
 
   return (
-    <a href={slug}>
+    <Link to={`/event/lesson/${slug}`} className="group">
       <span className={styles.date}>{availableDateFormatted}</span>
       <div className={styles.container}>
         <header className={styles.header}>
           {isLessonAvailable ? (
-            <span className={styles.headerText}>
+            <span className={`text-blue-500 ${styles.headerText}`}>
               <CheckCircle size={20} />
               Conteúdo Liberado
             </span>
           ) : (
-            <span className={`${styles.headerText} text-orange-500`}>
+            <span className={`text-orange-500 ${styles.headerText}`}>
               <Lock size={20} />
               Em breve
             </span>
@@ -33,6 +34,6 @@ export function LessonCard(props: LessonCardProps) {
         </header>
         <strong className={styles.title}>{title}</strong>
       </div>
-    </a>
+    </Link>
   )
 }

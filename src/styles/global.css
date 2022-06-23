@@ -4,7 +4,6 @@
 
 body {
   @apply bg-[#09090A] text-zinc-100
-  -webkit-font-smoothing: antialiased;
 }
 
 *,
@@ -13,4 +12,5 @@ textarea,
 select,
 input {
   font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
