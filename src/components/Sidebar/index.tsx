@@ -1,11 +1,9 @@
-import { useQuery } from '@apollo/client'
-
-import { LessonsDTO, GET_LESSONS_QUERY } from '../../graphql/getLessons'
+import { useGetLessonsQuery } from '../../graphql/generated'
 import { LessonCard } from '../LessonCard'
 import { styles } from './styles'
 
 export function Sidebar() {
-  const { data } = useQuery<LessonsDTO>(GET_LESSONS_QUERY)
+  const { data } = useGetLessonsQuery()
 
   return (
     <aside className={styles.container}>

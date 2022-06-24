@@ -1,22 +1,21 @@
-import { useQuery } from '@apollo/client'
 import { DefaultUi, Player, Youtube } from '@vime/react'
 import { CaretRight, DiscordLogo, FileArrowDown, Lightning } from 'phosphor-react'
 
 import '@vime/core/themes/default.css'
 
-import { GET_LESSON_BY_SLUG, LessonDTO } from '../../graphql/getLessonBySlug'
+import { useGetLessonBySlugQuery } from '../../graphql/generated'
 import { styles } from './styles'
 import { VideoPlayerProps } from './types'
 
 export function VideoPlayer(props: VideoPlayerProps) {
   const { lessonSlug } = props
 
-  const { data } = useQuery<LessonDTO>(GET_LESSON_BY_SLUG, {
+  const { data } = useGetLessonBySlugQuery({
     variables: { slug: lessonSlug },
     fetchPolicy: 'no-cache',
   })
 
-  if (!data) {
+  if (!data || !data.lesson) {
     return (
       <div className={styles.container}>
         <p>Carregando...</p>
@@ -39,18 +38,19 @@ export function VideoPlayer(props: VideoPlayerProps) {
           <div className={styles.container}>
             <h1 className={styles.title}>{data.lesson.title}</h1>
             <p className={styles.description}>{data.lesson.description}</p>
-
-            <div className={styles.teacherSection}>
-              <img
-                src={data.lesson.teacher.avatarURL}
-                alt={data.lesson.teacher.name}
-                className={styles.teacherImg}
-              />
-              <div>
-                <strong className={styles.teacherName}>{data.lesson.teacher.name}</strong>
-                <span className={styles.teacherRole}>{data.lesson.teacher.bio}</span>
+            {data.lesson.teacher && (
+              <div className={styles.teacherSection}>
+                <img
+                  src={data.lesson.teacher.avatarURL}
+                  alt={data.lesson.teacher.name}
+                  className={styles.teacherImg}
+                />
+                <div>
+                  <strong className={styles.teacherName}>{data.lesson.teacher.name}</strong>
+                  <span className={styles.teacherRole}>{data.lesson.teacher.bio}</span>
+                </div>
               </div>
-            </div>
+            )}
           </div>
           <div className={styles.actions}>
             <a href="#" className={styles.discordButton}>

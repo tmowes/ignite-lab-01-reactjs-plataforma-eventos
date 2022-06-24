@@ -1,10 +1,9 @@
 import { FormEvent, useCallback, useState } from 'react'
 
-import { useMutation } from '@apollo/client'
 import { useNavigate } from 'react-router-dom'
 
 import { Logo } from '../../components/Logo'
-import { CREATE_SUBSCRIBER_MUTATION, CreateSubscriberDTO } from '../../graphql/createSubscriber'
+import { useCreateSubscriberMutation } from '../../graphql/generated'
 import { styles } from './styles'
 
 export function Register() {
@@ -12,9 +11,7 @@ export function Register() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
-  const [createSubscriber, { data, loading }] = useMutation<CreateSubscriberDTO>(
-    CREATE_SUBSCRIBER_MUTATION,
-  )
+  const [createSubscriber, { data, loading }] = useCreateSubscriberMutation()
 
   const onSubscribe = useCallback(
     async (e: FormEvent) => {
