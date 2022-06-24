@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client'
 import { DefaultUi, Player, Youtube } from '@vime/react'
 import { CaretRight, DiscordLogo, FileArrowDown, Lightning } from 'phosphor-react'
 
+/* @vite-ignore */
 import '@vime/core/themes/default.css'
 
 import { GET_LESSON_BY_SLUG, LessonDTO } from '../../graphql/getLessonBySlug'

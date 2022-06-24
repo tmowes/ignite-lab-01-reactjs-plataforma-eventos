@@ -3,6 +3,9 @@ module.exports = {
   content: ['./src/**/*.{ts,tsx}'],
   theme: {
     extend: {
+      backgroundImage: {
+        blur: 'url(/src/assets/bg-register.png)',
+      },
       colors: {
         green: {
           700: '#015F43',
