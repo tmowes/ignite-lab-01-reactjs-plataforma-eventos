@@ -2,6 +2,7 @@ import { FormEvent, useCallback, useState } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
+import codeImg from '../../assets/hero-register.png'
 import { Logo } from '../../components/Logo'
 import { useCreateSubscriberMutation } from '../../graphql/generated'
 import { styles } from './styles'
@@ -59,11 +60,7 @@ export function Register() {
           </form>
         </div>
       </div>
-      <img
-        src="/src/assets/hero-register.png"
-        className={styles.heroImg}
-        alt="imagem de código"
-      />
+      <img src={codeImg} className={styles.heroImg} alt="imagem de código" />
     </div>
   )
 }
